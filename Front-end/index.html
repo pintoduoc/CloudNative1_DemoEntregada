@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso con Microsoft Entra ID</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Libreria MSAL 2.0 (CDN). Expone el objeto global "msal". -->
+    <script src="https://alcdn.msftauth.net/browser/2.35.0/js/msal-browser.min.js"></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+
+            <!-- Header -->
+            <div class="login-header">
+                <div class="logo">A</div>
+                <h1>Bienvenido</h1>
+                <p id="subtitulo">Accede con tu cuenta institucional</p>
+            </div>
+
+            <!-- ============================================
+                 VISTA 1: usuario sin sesion
+                 ============================================ -->
+            <div id="vistaLogin" class="vista">
+
+                <p class="nota">
+                    Tus credenciales se ingresan en el sitio de Microsoft.
+                    Esta aplicacion nunca las recibe ni las almacena.
+                </p>
+
+                <button id="btnLogin" class="btn-login">
+                    Iniciar sesion con Microsoft
+                </button>
+            </div>
+
+            <!-- ============================================
+                 VISTA 2: usuario autenticado
+                 ============================================ -->
+            <div id="vistaSesion" class="vista oculto">
+
+                <div class="usuario">
+                    <span class="usuario-nombre" id="usuarioNombre"></span>
+                    <span class="usuario-email" id="usuarioEmail"></span>
+                </div>
+
+                <button id="btnLlamarApi" class="btn-login">
+                    Llamar API protegida
+                </button>
+
+                <button id="btnLogout" class="btn-secundario">
+                    Cerrar sesion
+                </button>
+
+                <!-- Respuesta cruda del backend, util para la demostracion -->
+                <pre id="resultado" class="resultado oculto"></pre>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- El orden importa: la configuracion se carga antes de la logica -->
+    <script src="authConfig.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

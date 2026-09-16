@@ -1,0 +1,252 @@
+/* ============================================================
+   Reset y estilos base
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #001a4d 0%, #003d99 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ============================================================
+   Tarjeta principal
+   ============================================================ */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.login-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 26, 77, 0.3);
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.login-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.logo {
+    width: 56px;
+    height: 56px;
+    background: #001a4d;
+    border-radius: 12px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #ffc107;
+    font-size: 24px;
+}
+
+.login-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* ============================================================
+   Vistas (login / sesion activa)
+   ============================================================ */
+.vista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Utilidad para alternar entre vistas desde JS */
+.oculto {
+    display: none;
+}
+
+.nota {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #666;
+    background: #f5f7fa;
+    border-left: 3px solid #ffc107;
+    padding: 12px 14px;
+    border-radius: 6px;
+}
+
+/* ============================================================
+   Datos del usuario autenticado
+   ============================================================ */
+.usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    background: #f5f7fa;
+    border-radius: 8px;
+}
+
+.usuario-nombre {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+.usuario-email {
+    font-size: 13px;
+    color: #666;
+    word-break: break-all;
+}
+
+/* ============================================================
+   Botones
+   ============================================================ */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: #ffc107;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: #ffb300;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+.btn-secundario {
+    width: 100%;
+    padding: 12px;
+    background: white;
+    color: #001a4d;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secundario:hover {
+    border-color: #001a4d;
+    background: #f9f9f9;
+}
+
+/* Foco visible para navegacion con teclado */
+.btn-login:focus-visible,
+.btn-secundario:focus-visible {
+    outline: 3px solid #001a4d;
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   Respuesta del backend
+   ============================================================ */
+.resultado {
+    background: #001a4d;
+    color: #ffc107;
+    padding: 14px;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* ============================================================
+   Alertas (antes estaban inline en el JS)
+   ============================================================ */
+.alerta {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: entrarDerecha 0.3s ease;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.alerta-success { background: #2e7d32; }
+.alerta-error   { background: #d32f2f; }
+.alerta-info    { background: #001a4d; }
+
+.alerta-saliendo {
+    animation: salirDerecha 0.3s ease forwards;
+}
+
+@keyframes entrarDerecha {
+    from { opacity: 0; transform: translateX(100px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes salirDerecha {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(100px); }
+}
+
+/* Respeta la preferencia de movimiento reducido del sistema */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+    .btn-login:hover { transform: none; }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 32px 20px;
+    }
+
+    .login-header h1 {
+        font-size: 24px;
+    }
+
+    .alerta {
+        left: 20px;
+        right: 20px;
+        max-width: none;
+    }
+}
